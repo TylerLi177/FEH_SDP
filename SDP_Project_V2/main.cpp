@@ -5,7 +5,7 @@
  */
 int main() {
     // Clear background
-    LCD.SetBackgroundColor(BLACK);
+    LCD.SetBackgroundColor(BLUE);
     LCD.Clear();
 
     LCD.WriteLine("My name is Tyler");
