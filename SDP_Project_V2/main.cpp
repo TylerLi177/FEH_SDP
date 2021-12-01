@@ -9,7 +9,7 @@ int main() {
     LCD.Clear();
 
     LCD.WriteAt("Canaan Defense", 75, 100);
-
+    //Hello there
     while (1) {
         LCD.Update();
         // Never end
