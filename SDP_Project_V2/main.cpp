@@ -5,10 +5,11 @@
  */
 int main() {
     // Clear background
-    LCD.SetBackgroundColor(BLUE);
+    LCD.SetBackgroundColor(GREEN);
     LCD.Clear();
 
-    LCD.WriteLine("My name is Tyler");
+    LCD.WriteAt("Canaan Defense", 75, 100);
+    //LCD.WriteLine("Canaan Defense");
     
     while (1) {
         LCD.Update();
