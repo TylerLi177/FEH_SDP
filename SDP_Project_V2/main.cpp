@@ -22,7 +22,7 @@ if(LCD.Touch(&x,&y)){ //Enter menu if start screen is touched
     game.menu();
 }
 
-//Clicking the instructions button
+//Clicking the instructions button;
 while(true)
     {
         /* Clear the touch buffer so touches made before
@@ -56,7 +56,6 @@ while(true)
             LCD.Update();
             game.credits();
         }
-        
     }
 
 
@@ -64,7 +63,6 @@ while(true)
 /*After int main*/
 void Menu::menu() //Menu function defintion 
 {
-    float x, y;
     // Clear background
     //Set background to green
     LCD.SetBackgroundColor(GREEN);
@@ -127,4 +125,17 @@ LCD.SetBackgroundColor(GREEN);
 void Menu::difficulties()
 {
 LCD.SetBackgroundColor(GREEN);
+    // Clear background
+    //Set background to green
+    LCD.SetBackgroundColor(GREEN);
+    LCD.Clear();
+    //Set font to white
+    LCD.SetFontColor(LCD.White);
+    //Create menu options
+    LCD.WriteAt("Choose Difficulty", 60, 40);
+    LCD.DrawRectangle(50,90,220,40);
+    LCD.DrawRectangle(50,150,220,40);
+    LCD.WriteAt("Easy", 135, 100);
+    LCD.WriteAt("Hard", 135, 160);
+    LCD.Update();
 }
