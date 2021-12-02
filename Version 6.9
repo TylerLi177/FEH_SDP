@@ -10,6 +10,7 @@ class Menu
         void stats(); //Stats function
         void rules(); //Instructions function
         void credits(); //Credits function
+        void back(); //Back button function
 };
 
 /*Main function*/
@@ -44,7 +45,7 @@ void Menu::menu() //Menu function definition
     LCD.WriteAt("Instructions", 90, 133);
     LCD.WriteAt("Credits", 90, 183);
     LCD.Update();
-    Sleep(1.0);
+    Sleep(500);
     LCD.ClearBuffer();
     while(true)
     {
@@ -102,7 +103,6 @@ void Menu::ss()
 
 void Menu::game()
 {
-    float x, y;
 LCD.SetBackgroundColor(GREEN);
     // Clear background
     //Set background to green
@@ -116,115 +116,42 @@ LCD.SetBackgroundColor(GREEN);
     LCD.DrawRectangle(50,150,220,40);
     LCD.WriteAt("Easy", 135, 100);
     LCD.WriteAt("Hard", 135, 160);
-    LCD.DrawRectangle(250, 200, 60, 20);
-    LCD.WriteAt("Back",250, 205);
-    while(!LCD.Touch(&x,&y))
-    {
-       LCD.Update(); 
-    }
-    while(true)
-    {
-        /* Clear the touch buffer so touches made before
-           this call are discarded */
-        LCD.Clear();
-        LCD.ClearBuffer();
-        /* Wait until the user touches the screen */
-        while(!LCD.Touch(&x,&y)) {};
-        /* Wait until the touch releases */
-        while(LCD.Touch(&x,&y)) {};
-        if((x > 250 && x < 310) && (y > 200 && y < 220))
-        {
-            LCD.Clear();
-            LCD.Update();
-            menu();
-        }
-    }
+    back();
 }
 
 void Menu::stats()
 {
-float x, y;
-LCD.WriteLine("Status Report: You suck at this game");
+LCD.WriteAt("Status Report:", 0 , 20);
+LCD.WriteAt("You suck at this game", 0, 40);
 LCD.SetBackgroundColor(GREEN);
-LCD.DrawRectangle(250, 200, 60, 20);
-    LCD.WriteAt("Back",250, 205);
-    while(!LCD.Touch(&x,&y))
-    {
-       LCD.Update(); 
-    }
-    while(true)
-    {
-        /* Clear the touch buffer so touches made before
-           this call are discarded */
-        LCD.Clear();
-        LCD.ClearBuffer();
-        /* Wait until the user touches the screen */
-        while(!LCD.Touch(&x,&y)) {};
-        /* Wait until the touch releases */
-        while(LCD.Touch(&x,&y)) {};
-        if((x > 250 && x < 310) && (y > 200 && y < 220))
-        {
-            LCD.Clear();
-            LCD.Update();
-            menu();
-        }
-    }
+back();
 }
 
 void Menu::rules()
 {
-float x, y;
-LCD.WriteLine("Shoot the shapes with the cannon. It's not that hard");
-// LCD.WriteLine("This is the cannon");
-// LCD.DrawCircle(125, 195, 35);
-// LCD.DrawCircle(195, 195, 35);
-// LCD.DrawCircle(160, 55, 35);
-// LCD.DrawVerticalLine(125,55,160);
-// LCD.DrawVerticalLine(195,55,160);
-// LCD.DrawVerticalLine(160,20,25);
+LCD.WriteAt("Shoot the shapes with the",0,20);
+LCD.WriteAt("cannon. It's not that hard",0,40);
 LCD.SetBackgroundColor(GREEN); 
-LCD.DrawRectangle(250, 200, 60, 20);
-    LCD.WriteAt("Back",250, 205);
-    while(!LCD.Touch(&x,&y))
-    {
-       LCD.Update(); 
-    }
-    while(true)
-    {
-        /* Clear the touch buffer so touches made before
-           this call are discarded */
-        LCD.Clear();
-        LCD.ClearBuffer();
-        /* Wait until the user touches the screen */
-        while(!LCD.Touch(&x,&y)) {};
-        /* Wait until the touch releases */
-        while(LCD.Touch(&x,&y)) {};
-        if((x > 250 && x < 310) && (y > 200 && y < 220))
-        {
-            LCD.Clear();
-            LCD.Update();
-            menu();
-        }
-    }
+back();
 }
 
 void Menu::credits()
 {
-float x, y;
-LCD.WriteLine("The amazing Tyler Li and  Ben Lerner");
+LCD.WriteAt("The amazing Tyler Li and",0,20);
+LCD.WriteAt("Ben Lerner", 0, 40);
 LCD.SetBackgroundColor(GREEN);
+back();
+}
+
+//Back button definiton
+void Menu::back()
+{
+float x, y;
+int loop =1;
 LCD.DrawRectangle(250, 200, 60, 20);
     LCD.WriteAt("Back",250, 205);
-    while(!LCD.Touch(&x,&y))
-    {
-       LCD.Update(); 
-    }
     while(true)
-    {
-        /* Clear the touch buffer so touches made before
-           this call are discarded */
-        LCD.Clear();
-        LCD.ClearBuffer();
+    { 
         /* Wait until the user touches the screen */
         while(!LCD.Touch(&x,&y)) {};
         /* Wait until the touch releases */
@@ -233,7 +160,8 @@ LCD.DrawRectangle(250, 200, 60, 20);
         {
             LCD.Clear();
             LCD.Update();
-            menu();
+            (*this).menu();
+            loop =0;
         }
     }
 }
