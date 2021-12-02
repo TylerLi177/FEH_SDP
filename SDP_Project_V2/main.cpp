@@ -109,7 +109,7 @@ LCD.SetBackgroundColor(GREEN);
 }
 void Menu::stats()
 {
-LCD.WriteLine("You fucking suck at this  game");
+LCD.WriteLine("Status Report: You fucking suck at this game");
 LCD.SetBackgroundColor(GREEN);
 }
 void Menu::rules()
