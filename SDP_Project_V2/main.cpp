@@ -98,13 +98,13 @@ void Menu::ss()
 
 void Menu::game()
 {
-//LCD.WriteLine("Play game here");
-LCD.DrawCircle(125, 190, 35);
-LCD.DrawCircle(195, 190, 35);
-LCD.DrawCircle(160, 50, 35);
-LCD.DrawVerticalLine(125,50,155);
-LCD.DrawVerticalLine(195,50,155);
-LCD.DrawVerticalLine(160,15,25);
+LCD.WriteLine("This is the cannon");
+LCD.DrawCircle(125, 195, 35);
+LCD.DrawCircle(195, 195, 35);
+LCD.DrawCircle(160, 55, 35);
+LCD.DrawVerticalLine(125,55,160);
+LCD.DrawVerticalLine(195,55,160);
+LCD.DrawVerticalLine(160,20,25);
 LCD.SetBackgroundColor(GREEN); 
 }
 void Menu::stats()
