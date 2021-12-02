@@ -87,7 +87,7 @@ void Menu::ss()
     LCD.Clear();
     //Generate starting screen
     LCD.SetFontColor(LCD.White);
-    LCD.WriteAt("Canaan Defense", 75, 100);
+    LCD.WriteAt("Cannon Defense", 75, 100);
     while (!LCD.Touch(&x,&y)) {
         LCD.Update();
         // Never end
