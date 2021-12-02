@@ -45,7 +45,7 @@ void Menu::menu() //Menu function definition
     LCD.WriteAt("Instructions", 90, 133);
     LCD.WriteAt("Credits", 90, 183);
     LCD.Update();
-    Sleep(1);
+    Sleep(500);
     LCD.ClearBuffer();
     while(true)
     {
@@ -103,7 +103,6 @@ void Menu::ss()
 
 void Menu::game()
 {
-    float x, y;
 LCD.SetBackgroundColor(GREEN);
     // Clear background
     //Set background to green
@@ -122,23 +121,24 @@ LCD.SetBackgroundColor(GREEN);
 
 void Menu::stats()
 {
-float x, y;
-LCD.WriteLine("Status Report: You suck at this game");
+LCD.WriteAt("Status Report:", 0 , 20);
+LCD.WriteAt("You suck at this game", 0, 40);
 LCD.SetBackgroundColor(GREEN);
 back();
 }
 
 void Menu::rules()
 {
-float x, y;
-LCD.WriteLine("Shoot the shapes with the cannon. It's not that hard");
+LCD.WriteAt("Shoot the shapes with the",0,20);
+LCD.WriteAt("cannon. It's not that hard",0,40);
 LCD.SetBackgroundColor(GREEN); 
 back();
 }
 
 void Menu::credits()
 {
-LCD.WriteLine("The amazing Tyler Li and  Ben Lerner");
+LCD.WriteAt("The amazing Tyler Li and",0,20);
+LCD.WriteAt("Ben Lerner", 0, 40);
 LCD.SetBackgroundColor(GREEN);
 back();
 }
