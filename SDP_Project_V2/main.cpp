@@ -10,7 +10,6 @@ class Menu
         void stats(); //Stats function
         void rules(); //Instructions function
         void credits(); //Credits function
-        void difficulties(); //difficulties menu function
 };
 /*Main function*/
 int main()
@@ -96,34 +95,6 @@ void Menu::ss()
 
 void Menu::game()
 {
-LCD.WriteLine("This is the cannon");
-LCD.DrawCircle(125, 195, 35);
-LCD.DrawCircle(195, 195, 35);
-LCD.DrawCircle(160, 55, 35);
-LCD.DrawVerticalLine(125,55,160);
-LCD.DrawVerticalLine(195,55,160);
-LCD.DrawVerticalLine(160,20,25);
-LCD.SetBackgroundColor(GREEN); 
-}
-void Menu::stats()
-{
-LCD.WriteLine("Status Report: You fucking suck at this game");
-LCD.SetBackgroundColor(GREEN);
-}
-void Menu::rules()
-{
-LCD.WriteLine("Insert instructions here");
-LCD.SetBackgroundColor(GREEN);
-}
-
-void Menu::credits()
-{
-LCD.WriteLine("The amazing Tyler Li and  Ben Lerner");
-LCD.SetBackgroundColor(GREEN);
-}
-
-void Menu::difficulties()
-{
 LCD.SetBackgroundColor(GREEN);
     // Clear background
     //Set background to green
@@ -139,3 +110,26 @@ LCD.SetBackgroundColor(GREEN);
     LCD.WriteAt("Hard", 135, 160);
     LCD.Update();
 }
+void Menu::stats()
+{
+LCD.WriteLine("Status Report: You fucking suck at this game");
+LCD.SetBackgroundColor(GREEN);
+}
+void Menu::rules()
+{
+LCD.WriteLine("This is the cannon");
+LCD.DrawCircle(125, 195, 35);
+LCD.DrawCircle(195, 195, 35);
+LCD.DrawCircle(160, 55, 35);
+LCD.DrawVerticalLine(125,55,160);
+LCD.DrawVerticalLine(195,55,160);
+LCD.DrawVerticalLine(160,20,25);
+LCD.SetBackgroundColor(GREEN); 
+}
+
+void Menu::credits()
+{
+LCD.WriteLine("The amazing Tyler Li and  Ben Lerner");
+LCD.SetBackgroundColor(GREEN);
+}
+
