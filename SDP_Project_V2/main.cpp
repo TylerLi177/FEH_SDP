@@ -11,6 +11,7 @@ class Menu
         void rules(); //Instructions function
         void credits(); //Credits function
 };
+
 /*Main function*/
 int main()
 {
@@ -60,7 +61,7 @@ while(true)
 
 }
 /*After int main*/
-void Menu::menu() //Menu function defintion 
+void Menu::menu() //Menu function definition 
 {
     // Clear background
     //Set background to green
@@ -86,7 +87,7 @@ void Menu::ss()
     LCD.Clear();
     //Generate starting screen
     LCD.SetFontColor(LCD.White);
-    LCD.WriteAt("Cannon Defense", 75, 100);
+    LCD.WriteAt("Canaan Defense", 75, 100);
     while (!LCD.Touch(&x,&y)) {
         LCD.Update();
         // Never end
@@ -110,11 +111,13 @@ LCD.SetBackgroundColor(GREEN);
     LCD.WriteAt("Hard", 135, 160);
     LCD.Update();
 }
+
 void Menu::stats()
 {
 LCD.WriteLine("Status Report: You fucking suck at this game");
 LCD.SetBackgroundColor(GREEN);
 }
+
 void Menu::rules()
 {
 LCD.WriteLine("This is the cannon");
