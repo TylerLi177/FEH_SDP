@@ -120,13 +120,14 @@ LCD.SetBackgroundColor(GREEN);
 
 void Menu::rules()
 {
-LCD.WriteLine("This is the cannon");
-LCD.DrawCircle(125, 195, 35);
-LCD.DrawCircle(195, 195, 35);
-LCD.DrawCircle(160, 55, 35);
-LCD.DrawVerticalLine(125,55,160);
-LCD.DrawVerticalLine(195,55,160);
-LCD.DrawVerticalLine(160,20,25);
+LCD.WriteLine("Shoot the shapes with the cannon. It's not that hard");
+// LCD.WriteLine("This is the cannon");
+// LCD.DrawCircle(125, 195, 35);
+// LCD.DrawCircle(195, 195, 35);
+// LCD.DrawCircle(160, 55, 35);
+// LCD.DrawVerticalLine(125,55,160);
+// LCD.DrawVerticalLine(195,55,160);
+// LCD.DrawVerticalLine(160,20,25);
 LCD.SetBackgroundColor(GREEN); 
 }
 
