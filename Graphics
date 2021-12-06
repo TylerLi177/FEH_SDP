@@ -1,0 +1,17 @@
+void Menu::graphics()
+{
+    LCD.SetBackgroundColor(BLACK);
+    LCD.Clear(); 
+    //Draw Lanes
+    LCD.DrawHorizontalLine(40, 80, 319);
+    LCD.DrawHorizontalLine(80, 80, 319);
+    LCD.DrawHorizontalLine(120, 80, 319);
+    LCD.DrawHorizontalLine(160, 80, 319);
+    LCD.DrawHorizontalLine(200, 80, 319);
+    //Draw cannon
+    LCD.DrawCircle(10, 120, 5);
+    LCD.DrawRectangle(15, 115, 20, 10);
+    while(1){
+        LCD.Update();
+    }
+}
