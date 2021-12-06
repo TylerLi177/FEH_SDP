@@ -1,3 +1,6 @@
+float x, y, time;
+    int loop=0;
+    time = TimeNow();
 while(loop==0) {
         LCD.SetFontColor(LCD.White);
         if(LCD.Touch(&x,&y)){ //Enter menu if start screen is touched
