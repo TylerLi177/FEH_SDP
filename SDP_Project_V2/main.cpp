@@ -105,25 +105,25 @@ void Menu::ss()
     LCD.Clear();                   //Clear previous background
     LCD.WriteAt("Cannon Defense", 75, 100);
     float x, y, time;
-    int loop=0;
+    int loop = 0;
     time = TimeNow();
-while(loop==0) {
+while(loop == 0) {
         LCD.SetFontColor(LCD.White);
         if(LCD.Touch(&x,&y)){ //Enter menu if start screen is touched
             (*this).menu();
-            loop=1;
+            loop = 1;
         }       
-        if(TimeNow()-time>1.0 && TimeNow()-time<1.1){
+        if(TimeNow() - time > 1.0 && TimeNow() - time < 1.1){
             LCD.SetFontColor(LCD.White);
             LCD.WriteAt("Click To Play", 78, 200);  
         }
-        if(TimeNow()-time>2.0 && TimeNow()-time<2.1){
+        if(TimeNow() - time > 2.0 && TimeNow() - time < 2.1){
             LCD.SetFontColor(LCD.Green);
             LCD.WriteAt("Click To Play", 78, 200);
         }
-        else if(TimeNow()-time>2.0)
+        else if(TimeNow() - time > 2.0)
         {
-            time =TimeNow();
+            time = TimeNow();
         }
     }
 }
@@ -234,11 +234,13 @@ void Menu::difficulties()
             LCD.Clear();
             LCD.Update();
             int lane[3] = {15, 95, 175};
-            int randInt = rand() % 3, enemy_health = 1 + rand() % 5, i = 270, j = 288;
+            int randInt = rand() % 3, enemy_health = 1 + rand() % 5, lives = 3, i = 270, j = 288;
             while (enemy_health > 0)
             {
+                LCD.WriteAt("Lives: ", 0, 0);
+                LCD.WriteAt(lives, 67, 0);
                 graphics();
-                cannon();
+                //cannon();
                 LCD.DrawRectangle(i, lane[randInt], 50, 50);
                 LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
                 i--;
@@ -248,11 +250,20 @@ void Menu::difficulties()
                 LCD.Update();
                 if (i == 80)
                 {
-                    enemy_health = 0;
+                    lives--;
+                    randInt = rand() % 3, enemy_health = 1 + rand() % 5, i = 270, j = 288;
+                    LCD.DrawRectangle(i, lane[randInt], 50, 50);
+                    LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
+                    i--;
+                    j--;
+                    Sleep(1);
                     LCD.Clear();
                     LCD.Update();
-                    LCD.WriteAt("YOU LOSE", 100, 100);
-                    back();
+                    if(lives == 0)
+                    {
+                        LCD.WriteAt("YOU LOSE", 100, 100);
+                        back();
+                    }
                 }
             }
         }
@@ -263,11 +274,13 @@ void Menu::difficulties()
             LCD.Update();
             graphics();
             int lane[3] = {15, 95, 175};
-            int randInt = rand() % 3, enemy_health = 1 + rand() % 5, i = 270, j = 288;
-            while (enemy_health > 0)
+            int randInt = rand() % 3, enemy_health = 1 + rand() % 5, lives = 3, i = 270, j = 288;
+            while (lives > 0)
             {
+                LCD.WriteAt("Lives: ", 0, 0);
+                LCD.WriteAt(lives, 67, 0);
                 graphics();
-                cannon();
+                //cannon();
                 LCD.DrawRectangle(i, lane[randInt], 50, 50);
                 LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
                 i -= 3;
@@ -277,11 +290,20 @@ void Menu::difficulties()
                 LCD.Update();
                 if (i <= 80)
                 {
-                    enemy_health = 0;
+                    lives--;
+                    randInt = rand() % 3, enemy_health = 1 + rand() % 5, i = 270, j = 288;
+                    LCD.DrawRectangle(i, lane[randInt], 50, 50);
+                    LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
+                    i -= 3;
+                    j -= 3;
+                    Sleep(1);
                     LCD.Clear();
                     LCD.Update();
+                    if(lives == 0)
+                    {
                     LCD.WriteAt("YOU LOSE", 100, 100);
                     back();
+                    }
                 }
             }
         }
@@ -319,7 +341,7 @@ void cannon()
         {
         };
         //First lane
-        if ((x > 0 && x < 70) && (y > 0 && y < 80))
+        if ((x > 0 && x < 80) && (y > 0 && y < 80))
         {
             while (a != 30 && b != 50 && c != 20)
             {
@@ -354,7 +376,7 @@ void cannon()
             }
         }
         //Second lane
-        else if ((x > 0 && x < 70) && (y > 80 && y < 160))
+        else if ((x > 0 && x < 80) && (y > 80 && y < 160))
         {
             while (a != 110 && b != 130 && c != 110)
             {
@@ -400,7 +422,7 @@ void cannon()
             }
         }
         //Third lane
-        else if ((x > 0 && x < 70) && (y > 160 && y < 240))
+        else if ((x > 0 && x < 80) && (y > 160 && y < 240))
         {
             while (a != 190 && b != 210 && c != 190)
             {
@@ -440,9 +462,16 @@ void cannon()
 //Graphics fucnction definition
 void graphics()
 {
+    int i;
     LCD.SetBackgroundColor(GREEN);
     //Draw Lanes
-    LCD.DrawHorizontalLine(80, 80, 319);
-    LCD.DrawHorizontalLine(160, 80, 319);
+    for(i=0;i<24;i++)
+    {
+        LCD.SetFontColor(WHITE);
+        LCD.DrawRectangle((10*i)+80, 75, 10, 10);
+        LCD.DrawRectangle((10*i)+80, 155, 10, 10);
+    }
+    //LCD.DrawHorizontalLine(80, 80, 319);
+    //LCD.DrawHorizontalLine(160, 80, 319);
     LCD.DrawVerticalLine(80, 0, 239);
 }
