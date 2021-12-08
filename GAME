@@ -95,7 +95,7 @@ void Menu::menu() //Menu function definition
             LCD.Clear();
             LCD.Update();
             (*this).stats();
-            (*this).wins=1;
+            wins=1;
             break;
         }
         else if ((x > 50 && x < 270) && (y > 120 && y < 160))
@@ -181,7 +181,7 @@ stats()
     LCD.WriteAt("Games lost:", 0, 70);
     LCD.WriteAt(losses, 240, 70);
     LCD.WriteAt("Enemies killed:", 0, 120);
-    LCD.WriteAt((*this).enemies_killed, 240, 120);
+    LCD.WriteAt(enemies_killed, 240, 120);
     LCD.SetBackgroundColor(GREEN);
     back();
 }
@@ -205,6 +205,7 @@ void Menu::rules()
 }
 
 /*Credits function definition*/
+/*Displays the credits to the user*/
 /*Takes no input and returns no value*/
 /*Created by Tyler*/
 void Menu::credits()
@@ -381,6 +382,12 @@ void Menu::easy()
                 LCD.DrawCircle(10, a, 10);
                 LCD.DrawCircle(10, b, 10);
                 LCD.DrawRectangle(20, c, 50, 20);
+                if ((x > 70 && x< 320) && (y > 0 && y <240))
+                {
+                LCD.DrawCircle(10, a, 10);
+                LCD.DrawCircle(10, b, 10);
+                LCD.DrawRectangle(20, c, 50, 20);
+                }
                 if ((x > 0 && x < 70) && (y > 0 && y < 80))
                 {
                     while (a != 30 && b != 50 && c != 20)
@@ -438,7 +445,7 @@ void Menu::easy()
                     }
 
             //Cannonball projectile
-            int count=0, i=80;
+            int i=80;
             while (i < 310 && enemy_health>=0)
             {
                 graphics();
@@ -489,17 +496,14 @@ void Menu::easy()
                     LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
                     LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
                     LCD.WriteAt(lives+1, 60, 20);
+                    enemies_killed++;
                 }
                 if(i>=k && lane[randInt]==15)
                 {
                     enemy_health--;
                     i=80;
-                    count++;
                     goto first_lane;
                 }
-                if(enemy_health <=0)
-                {
-                    (*this).enemies_killed++;                }
              }
         }
         //Second lane
@@ -592,7 +596,7 @@ void Menu::easy()
                     }
                 }
             }
-            int i = 80, count=0;
+            int i = 80;
             while (i < 310 && enemy_health>=0)
             {
                 graphics();
@@ -645,17 +649,13 @@ void Menu::easy()
                     LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
                     LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
                     LCD.WriteAt(lives+1, 60, 20);
+                    enemies_killed++;
                 }
                 if(i>=k && lane[randInt]==95)
                 {
                     enemy_health--;
                     i=80;
-                    count++;
                     goto first_lane;
-                }
-                if(enemy_health <=0)
-                {
-                    (*this).enemies_killed++;
                 }
             }
         }
@@ -715,7 +715,7 @@ void Menu::easy()
                     LCD.WriteAt(lives+1, 60, 20);
                 }
             }
-            int i = 80, count=0;
+            int i = 80;
             while (i < 310)
             {
                 graphics();
@@ -764,16 +764,13 @@ void Menu::easy()
                     LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
                     LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
                     LCD.WriteAt(lives+1, 60, 20);
+                    enemies_killed++;
                  }
                  if(i>=k && lane[randInt]==175)
                 {
                     enemy_health--;
                     i=80;
                     goto first_lane;
-                }
-                if(enemy_health <=0)
-                {
-                    (*this).enemies_killed++;                    
                 }
             }
         } 
@@ -783,6 +780,7 @@ void Menu::easy()
             LCD.Update();
             LCD.SetFontColor(WHITE);
             LCD.WriteAt("YOU LOSE", 100, 100);
+            losses++;
             (*this).back();
 }
 /*Hard game*/
@@ -838,6 +836,7 @@ void Menu::hard()
                     LCD.DrawRectangle(k + 3, lane[randInt], 50, 50);
                     LCD.WriteAt(enemy_health, j + 3, lane[randInt] + 17);
                     LCD.WriteAt(lives+1, 60, 20);
+                    enemies_killed++;
                 }
             first_lane:
             while(LCD.Touch(&x,&y))
@@ -902,7 +901,7 @@ void Menu::hard()
                     }
 
             //Cannonball projectile
-            int count=0, i=80;
+            int i=80;
             while (i < 310 && enemy_health>=0)
             {
                 graphics();
@@ -953,17 +952,14 @@ void Menu::hard()
                     LCD.DrawRectangle(k + 3, lane[randInt], 50, 50);
                     LCD.WriteAt(enemy_health, j + 3, lane[randInt] + 17);
                     LCD.WriteAt(lives+1, 60, 20);
+                    enemies_killed++;
                 }
                 if(i>=k && lane[randInt]==15)
                 {
                     enemy_health--;
                     i=80;
-                    count++;
                     goto first_lane;
                 }
-                if(enemy_health <=0)
-                {
-                    (*this).enemies_killed++;                }
              }
         }
         //Second lane
@@ -1056,7 +1052,7 @@ void Menu::hard()
                     }
                 }
             }
-            int i = 80, count=0;
+            int i = 80;
             while (i < 310 && enemy_health>=0)
             {
                 graphics();
@@ -1109,17 +1105,13 @@ void Menu::hard()
                     LCD.DrawRectangle(k + 3, lane[randInt], 50, 50);
                     LCD.WriteAt(enemy_health, j + 3, lane[randInt] + 17);
                     LCD.WriteAt(lives+1, 60, 20);
+                    enemies_killed++;
                 }
                 if(i>=k && lane[randInt]==95)
                 {
                     enemy_health--;
                     i=80;
-                    count++;
                     goto first_lane;
-                }
-                if(enemy_health <=0)
-                {
-                    (*this).enemies_killed++;
                 }
             }
         }
@@ -1179,7 +1171,7 @@ void Menu::hard()
                     LCD.WriteAt(lives+1, 60, 20);
                 }
             }
-            int i = 80, count=0;
+            int i = 80;
             while (i < 310)
             {
                 graphics();
@@ -1228,16 +1220,13 @@ void Menu::hard()
                     LCD.DrawRectangle(k + 3, lane[randInt], 50, 50);
                     LCD.WriteAt(enemy_health, j + 3, lane[randInt] + 17);
                     LCD.WriteAt(lives+1, 60, 20);
+                    enemies_killed++;
                  }
                  if(i>=k && lane[randInt]==175)
                 {
                     enemy_health--;
                     i=80;
                     goto first_lane;
-                }
-                if(enemy_health <=0)
-                {
-                    (*this).enemies_killed++;                    
                 }
             }
         } 
@@ -1247,5 +1236,6 @@ void Menu::hard()
             LCD.Update();
             LCD.SetFontColor(WHITE);
             LCD.WriteAt("YOU LOSE", 100, 100);
+            losses++;
             (*this).back();
 }
