@@ -22,7 +22,7 @@ public:
     void easy();
     void hard();
 private:
-    int wins, losses, enemies_killed;
+    int hp, losses, enemies_killed;
 };
 void graphics();     //Graphics function prototype
 
@@ -42,7 +42,7 @@ int main()
 /*Created by Ben*/
 Menu::Menu()
 {
-wins =0;
+hp =0;
 losses=0;
 enemies_killed=0;
 }
@@ -95,7 +95,6 @@ void Menu::menu() //Menu function definition
             LCD.Clear();
             LCD.Update();
             (*this).stats();
-            wins=1;
             break;
         }
         else if ((x > 50 && x < 270) && (y > 120 && y < 160))
@@ -176,8 +175,8 @@ void Menu::game()
 void Menu::
 stats()
 {
-    LCD.WriteAt("Games won: ", 0, 20);
-    LCD.WriteAt(wins, 240, 20);
+    LCD.WriteAt("Damage dealt: ", 0, 20);
+    LCD.WriteAt(hp, 240, 20);
     LCD.WriteAt("Games lost:", 0, 70);
     LCD.WriteAt(losses, 240, 70);
     LCD.WriteAt("Enemies killed:", 0, 120);
@@ -348,7 +347,7 @@ void Menu::easy()
             LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
             k--;
             j--;
-            Sleep(1);
+            Sleep(5);
             LCD.SetFontColor(GREEN);
             LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
             LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
@@ -362,7 +361,7 @@ void Menu::easy()
                     LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
                     k--;
                     j--;
-                    Sleep(1);
+                    Sleep(5);
                     LCD.SetFontColor(GREEN);
                     LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
                     LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
@@ -370,7 +369,7 @@ void Menu::easy()
                 }
             else if(enemy_health<=0)
                 {
-                    Sleep(1);
+                    Sleep(5);
                     LCD.SetFontColor(GREEN);
                     LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
                     LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
@@ -379,16 +378,23 @@ void Menu::easy()
             first_lane:
             while(LCD.Touch(&x,&y))
             {
+                LCD.SetFontColor(WHITE);
                 LCD.DrawCircle(10, a, 10);
                 LCD.DrawCircle(10, b, 10);
                 LCD.DrawRectangle(20, c, 50, 20);
+                LCD.DrawRectangle(k, lane[randInt], 50, 50);
+                LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
+
                 if ((x > 70 && x< 320) && (y > 0 && y <240))
                 {
+                LCD.SetFontColor(WHITE);
                 LCD.DrawCircle(10, a, 10);
                 LCD.DrawCircle(10, b, 10);
                 LCD.DrawRectangle(20, c, 50, 20);
+                LCD.DrawRectangle(k, lane[randInt], 50, 50);
+                LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
                 }
-                if ((x > 0 && x < 70) && (y > 0 && y < 80))
+                else if ((x > 0 && x < 70) && (y > 0 && y < 80))
                 {
                     while (a != 30 && b != 50 && c != 20)
                     {
@@ -502,6 +508,7 @@ void Menu::easy()
                 {
                     enemy_health--;
                     i=80;
+                    hp++;
                     goto first_lane;
                 }
              }
@@ -655,6 +662,7 @@ void Menu::easy()
                 {
                     enemy_health--;
                     i=80;
+                    hp++;
                     goto first_lane;
                 }
             }
@@ -770,6 +778,7 @@ void Menu::easy()
                 {
                     enemy_health--;
                     i=80;
+                    hp++;
                     goto first_lane;
                 }
             }
@@ -841,9 +850,17 @@ void Menu::hard()
             first_lane:
             while(LCD.Touch(&x,&y))
             {
+                LCD.SetFontColor(WHITE);
                 LCD.DrawCircle(10, a, 10);
                 LCD.DrawCircle(10, b, 10);
                 LCD.DrawRectangle(20, c, 50, 20);
+                if ((x > 70 && x< 320) && (y > 0 && y <240))
+                {
+                LCD.SetFontColor(WHITE);
+                LCD.DrawCircle(10, a, 10);
+                LCD.DrawCircle(10, b, 10);
+                LCD.DrawRectangle(20, c, 50, 20);
+                }
                 if ((x > 0 && x < 70) && (y > 0 && y < 80))
                 {
                     while (a != 30 && b != 50 && c != 20)
@@ -958,6 +975,7 @@ void Menu::hard()
                 {
                     enemy_health--;
                     i=80;
+                    hp++;
                     goto first_lane;
                 }
              }
@@ -1111,6 +1129,7 @@ void Menu::hard()
                 {
                     enemy_health--;
                     i=80;
+                    hp++;
                     goto first_lane;
                 }
             }
@@ -1226,6 +1245,7 @@ void Menu::hard()
                 {
                     enemy_health--;
                     i=80;
+                    hp++;
                     goto first_lane;
                 }
             }
