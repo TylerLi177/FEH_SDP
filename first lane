@@ -1,0 +1,123 @@
+if ((x > 0 && x < 70) && (y > 0 && y < 80))
+                {
+                    while (a != 30 && b != 50 && c != 20)
+                    {
+                        graphics();
+                        LCD.SetFontColor(WHITE);
+                        LCD.DrawCircle(10, a, 10);
+                        LCD.DrawCircle(10, b, 10);
+                        LCD.DrawRectangle(20, c, 50, 20);
+                        a -= 5;
+                        b -= 5;
+                        c -= 5;
+                        if(enemy_health>0){
+                        LCD.DrawRectangle(k, lane[randInt], 50, 50);
+                        LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
+                        }
+                        k--;
+                        j--;
+                        Sleep(1);
+                        LCD.SetFontColor(GREEN);
+                        LCD.DrawCircle(10, a+5, 10);
+                        LCD.DrawCircle(10, b+5, 10);
+                        LCD.DrawRectangle(20, c+5, 50, 20);
+                        LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
+                        LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
+                        if (k == 85 && enemy_health>0)
+                        {
+                            lives--;
+                            randInt = rand() % 3, enemy_health = 1 + rand() % 5, k = 270, j = 288;
+                            LCD.SetFontColor(WHITE);
+                            LCD.DrawRectangle(k, lane[randInt], 50, 50);
+                            LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
+                            k--;
+                            j--;
+                            Sleep(1);
+                            LCD.SetFontColor(GREEN);
+                            LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
+                            LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
+                            LCD.WriteAt(lives+1, 0, 20);
+                        }
+                        else if (k == 85 && enemy_health<=0)
+                        {
+                            randInt = rand() % 3, enemy_health = 1 + rand() % 5, k = 270, j = 288;
+                            LCD.SetFontColor(GREEN);
+                            LCD.DrawRectangle(k, lane[randInt], 50, 50);
+                            LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
+                            k--;
+                            j--;
+                            Sleep(1);
+                            LCD.SetFontColor(GREEN);
+                            LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
+                            LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
+                            LCD.WriteAt(lives+1, 0, 20);
+                        }
+                    }
+
+            //Cannonball projectile
+            int count=0, i=80;
+            while (i < 310 && count<5)
+            {
+                graphics();
+                LCD.SetFontColor(WHITE);
+                LCD.DrawCircle(10, a, 10);
+                LCD.DrawCircle(10, b, 10);
+                LCD.DrawRectangle(20, c, 50, 20);
+                LCD.DrawCircle(i, 40, 10);
+                LCD.SetFontColor(BLACK);
+                LCD.FillCircle(i, 40, 10);
+                i += 10;
+                LCD.SetFontColor(WHITE);
+                LCD.DrawRectangle(k, lane[randInt], 50, 50);
+                LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
+                k--;
+                j--;
+                Sleep(1);
+                LCD.SetFontColor(GREEN);
+                LCD.DrawCircle(i-10, 40, 10);
+                LCD.FillCircle(i-10, 40, 10);
+                LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
+                LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
+                if (k == 85 && enemy_health >0)
+                {
+                    lives--;
+                    //LCD.SetFontColor(WHITE);
+                    randInt = rand() % 3, enemy_health = 1 + rand() % 5, k = 270, j = 288;
+                    LCD.DrawRectangle(k, lane[randInt], 50, 50);
+                    LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
+                    k--;
+                    j--;
+                    Sleep(1);
+                    LCD.SetFontColor(GREEN);
+                    LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
+                    LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
+                    LCD.WriteAt(lives+1, 0, 20);
+                }
+                else if(enemy_health<=0)
+                {
+                    LCD.SetFontColor(GREEN);
+                    randInt = rand() % 3, enemy_health = 1 + rand() % 5, k = 270, j = 288;
+                    LCD.DrawRectangle(k, lane[randInt], 50, 50);
+                    LCD.WriteAt(enemy_health, j, lane[randInt] + 17);
+                    k--;
+                    j--;
+                    Sleep(1);
+                    LCD.SetFontColor(GREEN);
+                    LCD.DrawRectangle(k + 1, lane[randInt], 50, 50);
+                    LCD.WriteAt(enemy_health, j + 1, lane[randInt] + 17);
+                    LCD.WriteAt(lives+1, 0, 20);
+                }
+                if(i>=k && lane[randInt]==15)
+                {
+                    enemy_health--;
+                    i=80;
+                    count++;
+                    goto first_lane;
+                }
+                if(enemy_health == 0)
+                {
+                    enemies_killed = 1;
+                    
+                }
+             }
+        }
